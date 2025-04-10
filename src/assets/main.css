@@ -1,0 +1,30 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+html, body, #app {
+    height: 100%;
+  }
+  
+
+.btn {
+    @apply font-bold cursor-pointer hover:opacity-70;
+}
+
+.main-padding {
+    @apply px-10 md:px-20
+}
+
+.right-padding {
+    @apply pr-10 md:pr-20
+}
+
+.left-padding {
+    @apply pl-10 md:pl-20
+}
+
+.top-padding {
+    @apply pt-10 md:pt-20
+
+}
