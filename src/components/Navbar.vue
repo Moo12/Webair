@@ -1,22 +1,23 @@
 <template>
-    <div class="fixed inset-0 w-full z-99" dir="ltr">
+    <div class="fixed top-0 left-0 right-0 w-full z-[99]">
  
-        <div class="flex justify-between items-center main-padding w-full" :class="navClass">
-            <router-link to="/" class="btn w-[20%] md:w-[10%] lg:w-[6%]" @click="currentTab = null">
+        <div class="flex justify-around items-center main-padding w-full" :class="navClass">
+            <router-link to="/" class="max-w-[5%]" @click="currentTab = null">
                 <img src="../../public/img/home_icon_temp.png" alt="" class="w-full aspect-square">
             </router-link>
 
             <!-- Desktop/ Tablet -->
-            <div v-if="!isMobile" class="flex gap-6 invisible md:visible">
-                <div v-for="(link,i) in navItems" :key="i">
-                    <router-link :to="link.href" @click="currentTab = i" class="py-4 px-4 btn rounded-3xl bg-purple-light"
-                    :class="[{
-                        'bg-purple-blue' : currentTab === i
-                    }]">
-                        <span class="text-eighteen-px font-black">{{ link.name }}</span>
-                    </router-link>
-                </div>
-            </div>
+             <div v-if="!isMobile" class="flex flex-grow justify-around">
+                 <div  class="invisible md:visible" v-for="(link,i) in navItems" :key="i">
+                     <router-link :to="link.href" @click="currentTab = i" class="py-4 px-4  btn"
+                     :class="{
+                         'bg-gray-300 border-3 border-black' : currentTab === i,
+                         'bg-transparent': currentTab !== i
+                     }">
+                         <span class="text-eighteen-px">{{ link.name }}</span>
+                     </router-link>
+                 </div>
+             </div>
 
             <!-- Mobile -->
             <div v-else class="visible md:invisible w-8 h-8">
@@ -110,6 +111,10 @@ import { ref, computed, onUnmounted, onMounted } from 'vue';
         window.removeEventListener("scroll", handleScroll);
     })
 
+    const onTabClick = (i) => {
+        currentTab.value = i
+    }
+
     const ellipseStyle = computed(() => {
         return {
             width: "100%",   // 70% of the menu width
@@ -123,8 +128,8 @@ import { ref, computed, onUnmounted, onMounted } from 'vue';
 
     const navClass = computed(() => {
         return  isScrolled.value
-            ? "bg-white border-gray-400 shadow-md" // White background when scrolled
-            :  `bg-transparent` // Transparent when at the top
+            ? "bg-white text-black border-gray-400 shadow-md" // White background when scrolled
+            :  `text-white bg-transparent` // Transparent when at the top
     });
 
 

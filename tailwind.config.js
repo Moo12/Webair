@@ -10,6 +10,10 @@ module.exports = {
   theme: {
 
     extend: {
+      spacing: {
+        'main-pad': '2.5rem',     // 10 = 2.5rem
+        'main-pad-md': '5rem',    // 20 = 5rem
+      },
       colors: {
         "purple-light": "#d28add",
         "purple-semi-light": "#a81abe",

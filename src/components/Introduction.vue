@@ -1,11 +1,9 @@
 <template>
-    <div class="grid grid-cols-12  main-padding" :class="textAlign">
-        <div class="col-span-6 text-fifty-four-px text-black text-center flex items-center h-full ">
-            <p>
-                תכנון טיולים אישית מה זה אומר?
-            </p>
+    <div class="grid grid-cols-6 gap-[3.6%] main-padding" :class="textAlign">
+        <div class="col-span-2 text-fifty-four-px text-black text-center flex items-center h-full ">
+            <TitleSection title="תכנון טיולים אישית מה זה אומר?"/>
         </div>
-        <div class="col-span-6 flex flex-col text-twenty-seven-px justify-between">
+        <div class="col-span-4 flex flex-col text-twenty-seven-px justify-center">
             <p class="w-full">בין אם אתם חולמים על חופשה אורבנית תוססת, טבע עוצמתי, חוויות קולינריות או שילוב של כל אלה, אני כאן כדי להפוך את החלום שלכם למסלול מדויק, נוח וזורם. 
             </p><br>
             <p class="w-full">
@@ -23,6 +21,7 @@
 
 <script setup>
 import useLanguageDirection from "@/composables/useLanguageDirection"
+import TitleSection from "./TitleSection.vue"
 
 const props = defineProps({
     language: {
