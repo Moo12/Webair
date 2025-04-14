@@ -2,17 +2,17 @@
     <div class="fixed top-0 left-0 right-0 w-full z-[99]">
  
         <div class="flex justify-around items-center main-padding w-full" :class="navClass">
-            <router-link to="/" class="max-w-[5%]" @click="currentTab = null">
-                <img src="../../public/img/home_icon_temp.png" alt="" class="w-full aspect-square">
+            <router-link to="/" class="max-w-[7%] w-[7%] h-auto">
+                <img src="../../public/img/webair_home_icon.gif" alt="" class="w-full object-cover">
             </router-link>
 
             <!-- Desktop/ Tablet -->
              <div v-if="!isMobile" class="flex flex-grow justify-around">
                  <div  class="invisible md:visible" v-for="(link,i) in navItems" :key="i">
-                     <router-link :to="link.href" @click="currentTab = i" class="py-4 px-4  btn"
+                     <router-link :to="link.href" class="py-4 px-4  btn"
                      :class="{
-                         'bg-gray-300 border-3 border-black' : currentTab === i,
-                         'bg-transparent': currentTab !== i
+                         'bg-gray-300 border-3 border-black' : isActive(link.href),
+                         'bg-transparent': !isActive(link.href)
                      }">
                          <span class="text-eighteen-px">{{ link.name }}</span>
                      </router-link>
@@ -44,9 +44,9 @@
             </div>
 
             <div v-for="(link,i) in navItems" :key="i">
-                <router-link :to="link.href" @click="currentTab = i" class="py-4 px-4 btn rounded-3xl bg-purple-light"
+                <router-link :to="link.href" class="py-4 px-4 btn rounded-3xl bg-purple-light"
                     :class="[{
-                        'bg-purple-blue' : currentTab === i
+                        'bg-purple-blue' : isActive(link.href)
                     }]">
                         <span class="text-eighteen-px font-black text-right">{{ link.name }}</span>
                 </router-link>
@@ -58,11 +58,13 @@
 
 <script setup>
 import { ref, computed, onUnmounted, onMounted } from 'vue';
+import { useRoute } from 'vue-router'
+
 
     const navItems = [
         {
             name: "בלוג",
-            href: "#",
+            href: "/blog",
         },
         {
             name: "צרו קשר",
@@ -78,18 +80,22 @@ import { ref, computed, onUnmounted, onMounted } from 'vue';
         },
         {
             name: "יעדים",
-            href: "#",
+            href: "/destinations",
         }
     ]
+
+    const route = useRoute()
 
     const isScrolled = ref(false);
 
     const isMobile = ref(false)
-
-    const currentTab = ref(null)
-
+    
     const isMenuOpen = ref(false)
-
+    
+    const isActive =  (href) => {
+        return route.path === href
+    }
+    
     const checkScreen = () => {
         isMobile.value = window.innerWidth < 768
     }
@@ -110,10 +116,6 @@ import { ref, computed, onUnmounted, onMounted } from 'vue';
 
         window.removeEventListener("scroll", handleScroll);
     })
-
-    const onTabClick = (i) => {
-        currentTab.value = i
-    }
 
     const ellipseStyle = computed(() => {
         return {

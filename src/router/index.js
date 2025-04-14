@@ -1,7 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/Home.vue'
 import Destinations from '@/views/Destinations.vue'
-
+import BlogView from '@/views/BlogView.vue'
 
 const routes = [
   {
@@ -10,11 +10,16 @@ const routes = [
     component: HomeView
   },
   {
+    path: '/blog',
+    name: 'Blog',
+    component: BlogView
+  },
+  {
     path: '/destinations',
     name: 'Destinations',
     component: Destinations,
     props: route => ({
-      id: route.params.id,
+      id: route.query.id,
     }),
   },
 ]

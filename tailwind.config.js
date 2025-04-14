@@ -15,10 +15,11 @@ module.exports = {
         'main-pad-md': '5rem',    // 20 = 5rem
       },
       colors: {
-        "purple-light": "#d28add",
-        "purple-semi-light": "#a81abe",
-        "purple-blue": "#6a0ec0",
-        "dark-blue": "#1a0ca9",
+        "purple-light": "#9aa2eb",
+        "purple-blue": "#4740c2",
+        "yellow-orange": "#ffbd59",
+        "black-light": "#292929",
+        "gray-background": "#f2f2f2"
       },
       fontSize: {
         'fifty-four-px': '3.375rem',

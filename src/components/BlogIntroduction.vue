@@ -1,20 +1,24 @@
 <template>
-    <div class="grid grid-cols-6 gap-[3.6%] main-padding w-full">
-        <div class="col-span-2  flex items-end justify-center h-full ">
-            <TitleSection title="מוזמנים לבלוג טיולים שלי" fontSize="twenty-seven-px"/>
+    <div class="grid grid-cols-6 gap-[3.6%] right-padding w-full ">
+        <div class="col-span-2  flex items-end justify-center h-full  ">
+            <TitleSection fontSize="twenty-seven-px" class="mb-[20%]">
+                <template #title>
+                    <router-link to="/blog">
+                        מוזמנים לבלוג טיולים שלי
+                    </router-link>
+                </template>
+            </TitleSection>
         </div>
         <!-- image scroller -->
          <div class="relative col-span-4">
-             <div class="absolute right-0  left-[calc(-1*theme(spacing.main-pad))] md:left-[calc(-1*theme(spacing.main-pad-md))]">
-                 <Scroller :items="items" :itemWidth="25" :itemGap="2">
-                     <template v-slot:default="{ item }">
-                         <div class="absolute max-w-full w-full max-h-1/4 h-1/4 top-[67%] px-[10%] mx-auto flex flex-wrap items-center justify-center bg-white">
-                             <p class="text-center break-words whitespace-normal ">{{ item.title }}</p>
-                         </div> 
-                     </template>
-                 </Scroller>
-             </div>
-         </div >
+            <Scroller :items="items" :itemWidth="25" :itemGap="2">
+                <template v-slot:default="{ item }">
+                    <div class="absolute max-w-full w-full max-h-1/4 h-1/4 top-[67%] px-[10%] mx-auto flex flex-wrap items-center justify-center bg-white">
+                        <p class="text-center break-words whitespace-normal ">{{ item.title }}</p>
+                    </div> 
+                </template>
+            </Scroller>
+        </div>
     </div>
 </template>
 

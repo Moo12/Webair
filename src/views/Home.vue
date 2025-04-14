@@ -1,7 +1,17 @@
 <template>
   <div>
     <div class="w-full h-screen overflow-hidden">
-      <img src="../../public/img/webair-aurope-capitals.jpeg" alt="" class="w-full h-full object-cover">
+      <video
+      class="w-full rounded-lg"
+      controls
+      autoplay
+      muted
+      loop
+      playsinline
+    >
+      <source src="/img/webair_welcome_video.mp4" type="video/mp4" />
+      Your browser does not support the video tag.
+    </video>
     </div>
     <div>
       <Introduction class="h-screen"  language="he"/>
@@ -27,6 +37,9 @@
     <div class="h-screen flex items-center">
       <BlogIntroduction/>
     </div>
+    <div class="h-screen flex items-center">
+      <ContactMeWrapper/>
+    </div>
   </div>
 </template>
 
@@ -36,6 +49,7 @@ import AutoScrolled from '@/components/AutoScrolled.vue';
 import NewAdventure from '@/components/NewAdventure.vue';
 import AboutMe from '@/components/AboutMe.vue';
 import BlogIntroduction from '@/components/BlogIntroduction.vue';
+import ContactMeWrapper from '@/components/ContactMeWrapper.vue';
 
 import vietnam from '@/../public/img/webair-vietnam.jpg'
 import cyprus from '@/../public/img/webair-cyprus.jpg'

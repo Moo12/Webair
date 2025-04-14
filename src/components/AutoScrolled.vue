@@ -45,7 +45,6 @@ const scrollStyle = {
 
 const animate = () => {
   if (!isPaused && scrollContainer.value) {
-    console.log("animate")
     scrollX += scrollSpeed
     
     scrollContainer.value.scrollBy({ left: scrollSpeed })

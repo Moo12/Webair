@@ -28,3 +28,7 @@ html, body, #app {
     @apply pt-main-pad md:pt-main-pad-md
 
 }
+
+.form-input {
+    @apply   w-full bg-white h-full rounded-3xl px-2 py-4 text-center text-black focus:ring-2 focus:ring-black focus:outline-none placeholder-black;
+}
