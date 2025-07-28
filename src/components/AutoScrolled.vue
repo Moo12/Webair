@@ -14,7 +14,7 @@
         v-for="(item, index) in images"
         :key="index"
         class="shrink-0 bg-cover aspect-[0.8] basis-[21%] mr-[5%]"
-        :style="{ backgroundImage: `url(${item.src})`}"
+        :style="{ backgroundImage: `url(${imageServer}${item.src})`}"
       >
         <slot :item="item"></slot>
       </div>
@@ -31,6 +31,8 @@ const props = defineProps({
     required: true,
   },
 })
+
+const imageServer = process.env.VUE_APP_UPLOAD_BASE_URL
 
 
 const scrollContainer = ref(null)

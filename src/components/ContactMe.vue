@@ -1,12 +1,12 @@
 <template>
-    <div class="grid grid-cols-6 gap-[3.6%] right-padding w-full py-[2%] px-[4%] bg-black rounded-3xl">
-        <div class="col-span-2 h-full flex flex-wrap items-center text-white text-fifty-four-px font-black">
-            <p>בואו נתפור חופשה לפי מידה</p>
+    <div class="grid grid-cols-6 md:gap-[3.6%] gap-[8%] md:right-padding w-full pt-[2%] pb-[20%] md:pb-[2%] md:px-[4%] px-0 bg-black rounded-3xl">
+        <div class="md:col-span-2 col-span-6 flex flex-wrap items-center text-center md:text-left justify-center md:text-[54px] text-[27px] text-white font-black">
+            <p>בואו נתפור <br>חופשה <br>לפי מידה</p>
         </div>
-        <div class="col-span-4 my-auto px-3">
-            <form @submit.prevent="handleSend">
-                <div class="grid grid-cols-2  w-full gap-[10%] gap-y-10">
-                    <div>
+            <div class="md:col-span-4 col-span-6 my-auto md:px-3 px-[10%] ">
+                <form @submit.prevent="handleSend">
+                <div class="grid md:grid-cols-2 grid-cols-1  w-full md:gap-[10%] gap-y-10">
+                    <div class="w-full">
                         <input 
                             type="text" 
                             v-model="name"
@@ -34,14 +34,14 @@
                             required
                         />
                     </div>
-                    <div class="h-full w-full justify-self-center  flex items-end ">
+                    <div class="w-full justify-self-center  flex items-end ">
                         <button 
                         type="submit"
-                        class="btn h-full w-full bg-yellow-orange rounded-3xl  px-6 py-2 text-center transition duration-300"
-                                >
+                        class="btn h-full w-full bg-yellow-orange rounded-lg  px-6 py-2 text-center transition duration-300">
                                 <span class="font-black">יוצאים לדרך!</span>
                         </button>
                     </div>
+                    
                 </div>
                 </form>
                 <div v-if="errorStatus">
@@ -137,11 +137,10 @@ export default {
             }
         };
 
-        return { displaySocialMediaIcons, name, email, message, handleSend, succesStr, failStr, errorStatus, status, pendingStr  }
+        return { displaySocialMediaIcons, name, email, message, handleSend, succesStr, failStr, errorStatus, status, pendingStr }
     }
 
 }
-
 
 </script>
 

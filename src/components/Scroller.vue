@@ -9,7 +9,7 @@
         v-for="(item, index) in items" 
           :key="index" 
           class="shrink-0 aspect-[0.8] bg-cover bg-center flex items-center justify-center relative rounded-[30px] overflow-hidden cursor-pointer" ref=""
-          :style="{ backgroundImage: `url(${item.image})`, width:  scrollItemWidth}"
+          :style="{ backgroundImage: `url(${imageServer}${item.image})`, width:  scrollItemWidth}"
         >
            <!-- Default slot for custom content -->
            <slot :item="item"></slot>
@@ -44,7 +44,9 @@
       const scrollItemWidth = ref(`${props.itemWidth}%`);// Width of each scroll item
       const gapSize = ref(`${props.itemGap}%`); // Gap between scroll items in px
   
-  
+      const imageServer = process.env.VUE_APP_UPLOAD_BASE_URL
+
+      console.log(props.items)
       console.log(`item percentage ${scrollItemWidth.value} gap percentage ${gapSize.value}`)
   
     // Compute scroll step (item width + gap)
@@ -72,7 +74,7 @@
       }
     };
   
-      return { scrollWrapper, scrollLeft, scrollRight, scrollItemWidth, gapSize };
+      return { scrollWrapper, scrollLeft, scrollRight, scrollItemWidth, gapSize, imageServer};
     }
   };
   </script>

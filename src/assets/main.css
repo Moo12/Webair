@@ -6,7 +6,10 @@
 html, body, #app {
     height: 100%;
   }
-  
+
+.form-input {
+    @apply py-3 w-full bg-white border-b border-black-light rounded-lg text-black-light focus:ring-2 focus:ring-blue-400 focus:outline-none text-center  placeholder-black-light;
+}
 
 .btn {
     @apply font-bold cursor-pointer hover:opacity-70;
@@ -27,8 +30,4 @@ html, body, #app {
 .top-padding {
     @apply pt-main-pad md:pt-main-pad-md
 
-}
-
-.form-input {
-    @apply   w-full bg-white h-full rounded-3xl px-2 py-4 text-center text-black focus:ring-2 focus:ring-black focus:outline-none placeholder-black;
 }
