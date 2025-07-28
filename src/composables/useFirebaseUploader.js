@@ -86,10 +86,11 @@ const useFirebaseUploader = () => {
             try {
                 response.success = false
                 errData = await res.json();
+                console.log("errData", errData)
                 let errorMsg =
-                typeof errData === "object" && "message" in errData
-                ? errData.message
-                : errData ? JSON.stringify(errData) : "Unknown error";
+                typeof errData === "object" && "detail" in errData
+                ? errData.detail
+                : "Unknown error";
                 
                 console.error("errorMsg", errorMsg)
                 response.error_code = errorMsg?.error_code
