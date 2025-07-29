@@ -1,5 +1,5 @@
 <template>
-    <div class="h-[90vh]">
+    <div class="min-h-[90vh]">
         <AboutMe />
     </div>
 </template>
