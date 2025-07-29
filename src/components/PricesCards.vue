@@ -15,21 +15,20 @@
           <div class="col-span-6 grid grid-cols-6 gap-[3.6%] h-full ">
             <div class="col-span-2 p-4 border bg-white rounded-3xl" v-for="card,index in travelServices" :key="index">
                 <div class="flex flex-col justify-between gap-4 h-full">
-                    <div class="flex flex-col gap-5">
-                        <div class="flex flex-col items-center text-[18px] gap-2">
+                    <div class="flex flex-col gap-5 text-[22px]">
+                        <div class="flex flex-col items-center ">
                             <p class="font-black"> {{ card.title }}</p>
-                            <p> {{  card.sub }}</p>
+                            <p> ({{  card.sub }})</p>
                         </div>
                         <p>{{card.content.main}}</p>
                         <div>
                             <p>מה כלול:</p>
                             <div v-for="option,index in card.content.options" :key="index" class="flex">
-                                <span>vi</span>
                                 <p> {{ option }}</p>
                             </div>
                         </div>
                     </div>
-                    <div class="bg-yellow-orange flex justify-center items-center px-3 py-2 rounded-3xl text-black-light mx-auto">
+                    <div class="bg-yellow-orange flex mb-[10%] justify-center items-center px-5 py-4 font-bold rounded-3xl text-black-light mx-auto">
                         <p>{{ card.price }} ש״ח</p>
                     </div>
                 </div>
