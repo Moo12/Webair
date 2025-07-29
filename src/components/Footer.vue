@@ -1,5 +1,5 @@
 <template>
-    <div class="main-padding absolute bottom-0 left-0 w-full z-[99]">
+    <div class="main-padding w-full z-[99]">
         <div class=" flex items-center justify-between gap-4">
             <router-link :to="link.href" v-for="(link,i) in navItems" :key="i" class="flex-grow-0 btn inline-block"
             :class="{
