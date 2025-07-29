@@ -4,7 +4,8 @@
         <slot />
       </div>
       <video
-      class="w-full rounded-lg"
+      class="w-full rounded-lg h-full object-cover"
+      :style="{ objectPosition: videoPosition }"
       controls
       autoplay
       muted
@@ -19,7 +20,7 @@
 </template>
 
 <script setup>
-import { onMounted, onUnmounted } from 'vue'
+import { onMounted, onUnmounted, computed } from 'vue'
 import { useLayoutStore } from '@/stores/layoutStore'
 import { useViewModeStore } from '@/stores/viewModeStores'
 
@@ -32,8 +33,36 @@ const props = defineProps({
     source: {
         type: String,
         required: true
+    },
+    position: {
+        type: String,
+        default: 'center',
+        validator: (value) => {
+            const validPositions = [
+                'center', 'top', 'bottom', 'left', 'right',
+                'top-left', 'top-right', 'bottom-left', 'bottom-right'
+            ];
+            return validPositions.includes(value);
+        }
     }
 })
+
+// Convert position prop to CSS object-position value
+const videoPosition = computed(() => {
+    const positionMap = {
+        'center': 'center center',
+        'top': 'center top',
+        'bottom': 'center bottom',
+        'left': 'left center',
+        'right': 'right center',
+        'top-left': 'left top',
+        'top-right': 'right top',
+        'bottom-left': 'left bottom',
+        'bottom-right': 'right bottom'
+    };
+    
+    return positionMap[props.position] || 'center center';
+});
 
 onMounted(() => {
     layoutStore.setMargin("mx-[1%]")

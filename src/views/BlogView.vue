@@ -1,6 +1,6 @@
 <template>
     <div class="">
-        <WelcomeVideo v-if="welcomeVideo && welcomeVideo !== ''" :source="welcomeVideo" />
+        <WelcomeVideo position="center" v-if="welcomeVideo && welcomeVideo !== ''" :source="welcomeVideo" />
         <div class="h-min-[100vh] py-[10%] relative px-[10%] w-full max-w-full">
             <div class="grid grid-cols-6 gap-10 w-full relative">
                 <!-- Title: spans all columns -->
