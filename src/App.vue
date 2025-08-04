@@ -15,7 +15,6 @@ import { useScreenStore } from './stores/screen'
 import useLanguageDirection from './composables/useLanguageDirection'
 
 import { useGeneralCollectionStore } from './stores/generalDocStore'
-import { useCollectionsStore } from './stores/collectionsStore'
 
 import Navbar from './components/Navbar.vue';
 import Footer from './components/Footer.vue';
@@ -27,12 +26,10 @@ const { dir } = useLanguageDirection('he')
 onMounted(() => {
   screen.init()
   useGeneralCollectionStore().init()
-  useCollectionsStore().init()
 })
 
 onUnmounted(() => {
   screen.destroy()
-  useCollectionsStore().clearAll()
 })
 </script>
 
