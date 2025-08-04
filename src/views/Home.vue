@@ -5,9 +5,9 @@
     </div>
   </div>
   <div v-else>
-    <WelcomeVideo :source="welcomeVideo" class="h-[100vh]"/>
-    <div class="min-h-[70vh] mt-[8%]">
-      <Introduction language="he" title="תכנון טיולים אישית מה זה אומר?">
+    <WelcomeVideo :source="welcomeVideo" class="md:h-[100vh] h-auto"/>
+    <div class="md:mt-[8%] mt-[15%]">
+      <Introduction language="he" title="תכנון טיולים בהתאמה אישית מה זה אומר?">
         <p>בין אם אתם חולמים על חופשה אורבנית תוססת, טבע עוצמתי, חוויות קולינריות או שילוב של כל אלה, אני כאן כדי להפוך את החלום שלכם למסלול מדויק, נוח וזורם. 
           <br><br>
           אני מאמינה שטיול טוב מתחיל בתכנון אישי – יצירה ייחודית, המבוססת על ההעדפות שלכם, הקצב שמתאים לכם והקסם שמסתתר בכל פינה בעולם. ב-WEBAIR, כל מסע נבנה בדיוק בשבילכם – משלב הרעיון ועד הפרטים הקטנים. 
@@ -16,8 +16,8 @@
         </p>
       </Introduction>
     </div>
-    <div class="flex min-h-[90vh] items-center md:mt-[10%] mt-[30%]">
-      <AutoScrolled :images="images">
+    <div class="flex items-center md:mt-[8%] mt-[15%]">
+      <AutoScrolled :images="images" :imagePercentage="screenStore.isMobile ? 100 : 50" :scrollSpeed="3">
         <template #default="{ item }">
           <router-link :to="{ name: 'Destination', params: {id: item.id}}" class="h-full w-full flex justify-center items-end mb-5">
             <p class=" text-white font-black text-[20px]">{{ item.title }}</p>
@@ -26,18 +26,18 @@
       </AutoScrolled>
     </div>
 
-    <div class="h-screen md:h-[120vh] md:mt-[10%] mt-[30%] flex items-center">
+    <div class="md:mt-[8%] mt-[15%] flex items-center">
       <NewAdventure/>
     </div>
 
-    <div id="about-me" class="flex items-center">
+    <div id="about-me" class="flex items-center md:mt-[8%] mt-[15%]">
       <AboutMe/>
     </div>  
 
-    <div class="h-screen flex items-center">
+    <div class="md:mt-[8%] mt-[15%] flex items-center">
       <BlogIntroduction/>
     </div>
-    <div id="contact-me" class="h-screen flex items-center">
+    <div id="contact-me" class="h-[85vh] mt-[8%] flex items-center">
       <ContactMeWrapper/>
     </div>
   </div>
@@ -47,6 +47,7 @@
 import { computed } from 'vue';
 
 import { getImageUrlFromDoc } from '@/composables/imageUtils'
+import { useScreenStore } from '@/stores/screen'
 
 import Introduction from '@/components/CustomTripDef.vue';
 import AutoScrolled from '@/components/AutoScrolled.vue';
@@ -59,6 +60,8 @@ import WelcomeVideo from '@/components/WelcomeVideo.vue';
 import { useGeneralCollectionStore } from '@/stores/generalDocStore'
 
 const generalCollectionStore = useGeneralCollectionStore()
+
+const screenStore = useScreenStore()
 
 const loading = computed(() => { 
   return generalCollectionStore.isSubCollectionLoading('destinations', 'destinations') 

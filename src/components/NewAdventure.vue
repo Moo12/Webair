@@ -1,9 +1,9 @@
 <template>
     <div class="w-full relative" 
         :style="{height: `${mapWrapHeight * 1.5}px`}">
-        <div class="grid grid-cols-6 gap-x-[20%] gap-y-[10%] main-padding">
+        <div class="grid grid-cols-6 gap-x-[20%] gap-y-[10%] md:gap-y-[10%] main-padding">
             <div class="col-span-4 md:col-span-2">
-                <div class="h-[50%] flex items-end pb-1">
+                <div class="h-[50%] flex flex-wrap items-end pb-1">
                     <TitleSection class="z-[10]" title="מה ההרפתקאה הבאה שלך?"  :fontSize="screen.isMobile ? 'eighteen-px' : 'twenty-seven-px'" />
                 </div>
 
@@ -25,7 +25,6 @@
             backgroundPosition: 'bottom'
         }"
         ></div>
-
     </div> 
 </template>
 

@@ -1,20 +1,22 @@
 <template>
-  <div
-    class="w-full overflow-hidden relative"
-    @mouseenter="pauseScroll"
-    @mouseleave="resumeScroll"
-  >
+  <div class="w-full overflow-hidden relative">
     <!-- Scrollable container -->
     <div
+      @mouseenter="pauseScroll"
+      @mouseleave="resumeScroll"
       ref="scrollContainer"
-      class="flex w-full overflow-x-scroll no-scrollbar scroll-snap"
-      :style="scrollStyle"
+      class="flex w-full overflow-x-scroll no-scrollbar"
     >
+      <!-- Duplicate the images for a seamless loop. Duplicating once is sufficient. -->
       <div
-        v-for="(item, index) in images"
+        v-for="(item, index) in duplicatedImages"
         :key="index"
-        class="shrink-0 bg-cover aspect-[0.8] basis-[21%] mr-[5%]"
-        :style="{ backgroundImage: `url(${imageServer}${item.src})`}"
+        class="shrink-0 bg-cover aspect-dynamic"
+        :style="{
+          backgroundImage: `url(${imageServer}${item.src})`,
+          width: `${imagePercentage}%`,
+          marginRight: `${spacing}%`
+        }"
       >
         <slot :item="item"></slot>
       </div>
@@ -23,75 +25,125 @@
 </template>
 
 <script setup>
-import { ref, onMounted, onUnmounted } from 'vue'
+import { ref, onMounted, onUnmounted, computed, nextTick } from 'vue'
 
 const props = defineProps({
   images: {
     type: Array,
     required: true,
   },
+  imagePercentage: {
+    type: Number,
+    default: 21,
+    validator: (value) => value > 0 && value <= 100
+  },
+  spacing: {
+    type: Number,
+    default: 5,
+    validator: (value) => value >= 0 && value <= 50
+  },
+  scrollSpeed: {
+    type: Number,
+    default: 0.3,
+    validator: (value) => value > 0 && value <= 10
+  },
+  aspectRatio: {
+    type: String,
+    default: '1.5',
+    validator: (value) => {
+      // Validate aspect ratio format (e.g., '1.5', '16/9', '4/3')
+      return /^[\d.]+$|^\d+\/\d+$/.test(value);
+    }
+  }
 })
 
 const imageServer = process.env.VUE_APP_UPLOAD_BASE_URL
 
-
 const scrollContainer = ref(null)
 let animationFrame
-let scrollX = 0
 let isPaused = false
-const scrollSpeed = 0.3
 
-const scrollStyle = {
-  transition: 'transform 0.1s linear',
-}
+// Create a new array with images duplicated for a seamless loop
+// Duplicating once is all that's needed for a right-to-left loop.
+const duplicatedImages = computed(() => {
+  if (props.images && props.images.length > 0) {
+    return [...props.images, ...props.images]
+  }
+  return []
+})
+
+// Calculate the total width of a single set of images, including spacing
+const totalImageSetWidth = computed(() => {
+  if (!scrollContainer.value || !props.images.length) return 0;
+  
+  const containerWidth = scrollContainer.value.getBoundingClientRect().width;
+  const itemWidth = (containerWidth * props.imagePercentage / 100);
+  const itemSpacing = (containerWidth * props.spacing / 100);
+  
+  return (itemWidth + itemSpacing) * props.images.length;
+});
+
 
 const animate = () => {
-  if (!isPaused && scrollContainer.value) {
-    scrollX += scrollSpeed
-    
-    scrollContainer.value.scrollBy({ left: scrollSpeed })
-    
-    if (scrollContainer.value.scrollLeft === 0) {
-      console.log("reset scroll x")
-      scrollX = 0
-      
-      scrollContainer.value.style.scrollBehavior = "auto"
-      
-      // Jump back to the left
-      scrollContainer.value.scrollBy({ left: scrollContainer.value.clientWidth * -1 })
+  // If paused or container is not ready, do nothing
+  if (isPaused || !scrollContainer.value) {
+    return;
+  }
+  
+  // Scroll left by the defined speed
+  scrollContainer.value.scrollLeft -= props.scrollSpeed
+  
+  // If the scroll position reaches the beginning, reset it to the start of the second set
+  if (scrollContainer.value.scrollLeft <= -1 *  totalImageSetWidth.value) {
+    // We use a small epsilon to prevent floating point issues
+    scrollContainer.value.scrollLeft = 0;
+  }
+  
+  animationFrame = requestAnimationFrame(animate)
+}
 
-      // Re-enable smooth scroll
-      requestAnimationFrame(() => {
-        scrollContainer.value.style.scrollBehavior = "smooth"
-      })
-    }
+const pauseScroll = () => {
+  isPaused = true
+  cancelAnimationFrame(animationFrame)
+}
+
+const resumeScroll = () => {
+  if (isPaused) {
+    isPaused = false
     animationFrame = requestAnimationFrame(animate)
   }
 }
 
-const pauseScroll = () => {
-  console.log("pAUSE")
-  isPaused = true
-}
-
-const resumeScroll = () => {
-  isPaused = false
-  requestAnimationFrame(animate)
-}
-
 onMounted(() => {
-  scrollContainer.value.scrollBy({ left: scrollContainer.value.clientWidth * -1 })
-
-  console.log ("scrollContainer",scrollContainer.value.scrollLeft)
-  animationFrame = requestAnimationFrame(animate)
+  // Use nextTick to ensure the DOM is updated and container width is available
+  nextTick(() => {
+    if (scrollContainer.value) {
+      // For a right-to-left loop, start at the beginning of the second set of images
+      // This is necessary to avoid the initial jump.
+      scrollContainer.value.scrollLeft = 0;
+      animationFrame = requestAnimationFrame(animate);
+    }
+  });
 })
-
 
 onUnmounted(() => {
   cancelAnimationFrame(animationFrame)
 })
 </script>
 
-<style>
+<style scoped>
+/* Dynamic aspect ratio class */
+.aspect-dynamic {
+  aspect-ratio: v-bind(aspectRatio);
+}
 
+/* Hide scrollbar */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
 </style>

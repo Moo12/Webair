@@ -1,13 +1,13 @@
 <template>
     <div class="fixed top-0 left-0 right-0 w-full z-[99]">
  
-        <div class="flex justify-between items-center main-padding w-full" :class="navClass">
+        <div class="flex justify-between items-center main-padding  w-full" :class="navClass">
             <router-link to="/" class="max-w-[20%] w-[20%] md:max-w-[7%] md:w-[7%] h-auto">
                 <img :src="mediaServer + logoImage" alt="" class="w-full object-cover">
             </router-link>
 
             <!-- Desktop/ Tablet -->
-             <div v-if="!isMobile" class="flex flex-grow justify-between">
+             <div v-if="!isMobile" class="flex flex-grow justify-between items-center">
                  <div  class="invisible md:visible" v-for="(link,i) in navItems" :key="i">
                      <router-link :to="link.href" class="py-4 px-4  btn"
                      :class="{

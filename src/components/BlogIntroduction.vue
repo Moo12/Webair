@@ -4,9 +4,9 @@
             <p class="text-center break-words whitespace-normal md:text-[20px] text-[27px]">טוען נתונים...</p>
         </div>
     </div>
-    <div v-else class="grid grid-cols-6 gap-[3.6%] right-padding w-full ">
+    <div v-else class="grid grid-cols-6 gap-x-[3.6%] right-padding w-full ">
         <div class="col-span-4 md:col-span-2  flex items-end justify-center h-full  ">
-            <TitleSection fontSize="twenty-seven-px" class="mb-[20%]">
+            <TitleSection :fontSize="screen.isMobile ? 'eighteen-px' : 'twenty-seven-px'" class="mb-[20%]">
                 <template #title>
                     <router-link to="/blog">
                         מוזמנים לבלוג טיולים שלי

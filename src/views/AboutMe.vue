@@ -1,5 +1,5 @@
 <template>
-    <div class="h-[80vh] my-[5%]">
+    <div class="min-h-[80vh] my-[5%]">
         <AboutMe />
     </div>
 </template>
