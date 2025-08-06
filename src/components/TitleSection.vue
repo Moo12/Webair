@@ -12,7 +12,7 @@
       - 'flex-wrap' is not needed here; a standard div will wrap text by default.
       - We just ensure it's a block-level element and let it handle the text flow.
     -->
-    <div class="text-purple-blue font-bold" :class="`text-${fontSize}`">
+    <div class="text-purple-blue font-bold flex flex-wrap" :class="`text-${fontSize}`">
       <slot name="title">
           {{ title }}
       </slot>
@@ -23,7 +23,7 @@
       - Its position is absolute, but the parent container's height is now correct,
         so it will be correctly positioned relative to the bottom of the parent.
     -->
-    <div class="absolute bottom-0 left-0 h-[4px] w-full bg-purple-blue"></div>
+    <div class="absolute bottom-0 left-0 h-[4px] bg-purple-blue right-[calc(-1*theme(spacing.main-pad))] md:right-[calc(-1*theme(spacing.main-pad-md))]"></div>
   </div>
 </template>
 

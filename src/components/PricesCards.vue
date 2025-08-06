@@ -7,13 +7,22 @@
   
   <div v-else class=" h-full w-full bg-cover flex items-center"
           :style="{ backgroundImage: `url(${mediaServer + backgroundImage})` }">
-      <div class="grid grid-cols-6 main-padding w-full justify-center items-center h-full pb-[4%]">            
+      <div class="grid grid-cols-6 main-padding w-full justify-center items-center h-full pb-[4%]"
+          :class="{
+            'gap-y-8' : screen.isMobile
+          }"
+          >            
           <div class="lg:col-span-1 md:col-span-2 col-span-4 font-bold">
               <TitleSection title="בחרו את המסלול שמתאים לכם" fontSize="twenty-seven-px"/>
           </div>
 
-          <div class="col-span-6 grid grid-cols-6 gap-[3.6%] h-full ">
-            <div class="col-span-2 p-4 border bg-white rounded-3xl" v-for="card,index in travelServices" :key="index">
+          <div class="col-span-6 grid grid-cols-6 h-full"
+          :class="{
+            'gap-[3.6%]' : !screen.isMobile,
+            'gap-y-8' : screen.isMobile
+          }"
+          >
+            <div class="md:col-span-2 col-span-6 p-4 border bg-white rounded-3xl" v-for="card,index in travelServices" :key="index">
                 <div class="flex flex-col justify-between gap-4 h-full">
                     <div class="flex flex-col gap-5 text-[22px]">
                         <div class="flex flex-col items-center ">
@@ -43,6 +52,7 @@
 
 <script setup>
 import { computed } from 'vue'
+import  { useScreenStore } from '@/stores/screen'
 import { useGeneralCollectionStore } from '@/stores/generalDocStore'
 import { getImageUrlFromDoc } from '@/composables/imageUtils'
 import TitleSection from './TitleSection.vue';
@@ -54,6 +64,8 @@ const props = defineProps({
       required: true
     }
 })
+
+const screen = useScreenStore()
 
 const mediaServer = process.env.VUE_APP_UPLOAD_BASE_URL
 

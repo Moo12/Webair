@@ -4,34 +4,42 @@
       <p class="text-center break-words whitespace-normal md:text-[20px] text-[27px]">טוען נתונים...</p>
     </div>
   </div>
-  <div v-else class="grid grid-cols-6 gap-[3.6%] w-full h-full textAlign main-padding">
-      <div class="col-span-2 flex flex-col gap-4 justify-center">
-          <div class="flex items-center w-full gap-4">
-              <div class="w-[20%] h-auto">
-                  <img :src="mediaServer + icon_hover" alt="Map location icon" class="w-full h-full object-cover">
-              </div>
-              <div class="text-twenty-seven-px font-black">
-                  {{ currentInfo?.title }}
-              </div>
-          </div>
-          <div class="text-eighteen-px">
-              {{ currentInfo?.content }}
-          </div>
-      </div>
-      <div class="col-span-4 flex items-center">
-          <InteractiveRoadmap :locations="readMapInfo" :currentLocation="currentLocationId" :title="currentInfo?.title" @locationToggled="handleLocationToggled" />
-      </div>
+  <div v-else class="grid grid-cols-12  w-full textAlign main-padding"
+  :class="{
+    'gap-y-[20%]' : screen.isMobile,
+    'gap-x-3' : !screen.isMobile
+  }"
+  >
+    <div class="col-span-12 md:col-span-4 min-h-[30vh] flex flex-col gap-4 justify-center">
+        <div class="flex items-center w-full gap-4 ">
+            <div class="w-[20%] h-auto">
+                <img :src="mediaServer + icon_hover" alt="Map location icon" class="w-full h-full object-cover">
+            </div>
+            <div class="text-twenty-seven-px font-black">
+                {{ currentInfo?.title }}
+            </div>
+        </div>
+        <div class="text-eighteen-px">
+            {{ currentInfo?.content }}
+        </div>
+    </div>
+    <div class="col-span-12 md:col-span-8 flex items-center">
+        <InteractiveRoadmap :locations="readMapInfo" :currentLocation="currentLocationId" :title="currentInfo?.title" @locationToggled="handleLocationToggled" />
+    </div>
   </div>
 
 </template>
 
 <script setup>
-import InteractiveRoadmap from './InteractiveRoadmap.vue';
 import { ref, computed } from 'vue';
+import InteractiveRoadmap from './InteractiveRoadmap.vue';
 import useLanguageDirection from "@/composables/useLanguageDirection"
-
+import { useScreenStore } from '@/stores/screen'
 import { useGeneralCollectionStore } from '@/stores/generalDocStore'
+
 const generalCollectionStore = useGeneralCollectionStore()
+
+const screen = useScreenStore()
 
 import { getImageUrlFromDoc } from '@/composables/imageUtils'
 

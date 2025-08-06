@@ -13,19 +13,19 @@
                 </div>
             </template>
         </WelcomeVideo>
-        <CustomTripDef class="h-[90vh] mt-[10vh]" language="he" title="תכנון טיולים בהתאמה אישית אי זה עובד?">
+        <CustomTripDef class="mt-[8%]" language="he" title="תכנון טיולים בהתאמה אישית אי זה עובד?">
             טיול בתפירה אישית הוא בדיוק כפי שהוא נשמע – טיול שמתואם במיוחד לצרכים ולרצונות שלכם. עם ניסיון רב במגוון יעדים וסוגי טיולים, אני כאן כדי לוודא שתקבלו את החופשה המושלמת עבורכם. אין שני טיולים דומים, וכל אחד חווה טיול בדרך שונה. לכן, אני מציעה שלושה מסלולים שונים, כל אחד מהם נותן לכם את הגמישות וההתאמה האישית שאתם צריכים:
             <br><br>
     איך זה עובד שלב אחרי שלב?
     
         </CustomTripDef>
-        <div class="h-screen flex items-center">
+        <div class="flex items-center mt-[20%] md:mt-[8%] h-[80vh]">
             <InteractiveRoadmapWrraper language="he"/>
         </div>
-        <div class="h-screen">
+        <div class="mt-[20%] md:mt-[8%]">
             <PricesCards/>
         </div>
-        <div class="h-screen">
+        <div class="h-[80vh] mt-[20%] md:mt-[8%]">
             <ContactMeWrapper/>
         </div>
     </div>

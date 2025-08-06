@@ -1,12 +1,12 @@
 <template>
-    <div v-if="loading">
-      <div class="flex items-center justify-center h-screen">
+    <div v-if="loading" class="h-[80vh]">
+      <div class="flex items-center justify-center">
         <p class="text-center break-words whitespace-normal md:text-[20px] text-[27px]">טוען נתונים...</p>
       </div>
     </div>
     <div v-else ref="mapContainer" class="relative w-full">
         <!-- Background Map Image -->
-        <img :src="mediaServer + mapImage" alt="Map" class="w-full h-full object-cover" />
+        <img :src="mediaServer + mapImage" alt="Map" class="w-full h-auto object-cover" />
   
         <!-- Location Icons -->
         <div
