@@ -18,7 +18,7 @@
                      </router-link>
                  </div>
                  <!-- Login Button for Desktop -->
-                 <div class="invisible md:visible">
+                 <div v-if="isAdminRoute && !user">
                      <button v-if="!user" @click="loginWithGoogle" class="btn bg-yellow-orange text-black rounded-lg px-4 py-2 font-bold">
                          התחבר עם Google
                      </button>
@@ -60,7 +60,8 @@
             </div>
             
             <!-- Login Button for Mobile -->
-            <div class="w-full">
+            <div v-if="isAdminRoute && !user" class="w-full">
+                
                 <button v-if="!user" @click="loginWithGoogle" class="btn bg-yellow-orange text-black rounded-lg px-4 py-2 font-bold w-full">
                     התחבר עם Google
                 </button>
@@ -185,6 +186,11 @@ const isActive =  (href) => {
             ? "bg-white text-black border-gray-400 shadow-md" // White background when scrolled
             :  `${bgClass} bg-transparent ${marginX.value} ${marginT.value}` // Transparent when at the top
     });
+
+// Only show navbar on admin routes
+const isAdminRoute = computed(() => {
+  return route.path.startsWith('/admin')
+})
 </script>
 
 <style>

@@ -1,15 +1,11 @@
 <template>
     <div class="">
         <WelcomeVideo position="center" v-if="welcomeVideo && welcomeVideo !== ''" :source="welcomeVideo" />
-        <div class="h-min-[100vh] py-[10%] relative px-[10%] w-full max-w-full">
+        <div class="h-min-[90vh] py-[10%] relative px-[10%] w-full max-w-full">
             <div class="grid grid-cols-6 gap-10 w-full relative">
-                <!-- Title: spans all columns -->
-                <div class="col-span-6 absolute inset-0 text-5xl top-4 md:text-6xl font-bold mb-4 z-20 text-center">
-                ההרפתקה הבאה מתחילה כאן
-                </div>
                 <!-- Image: overlays title, lower z-index -->
                 <!-- Subheadline and Paragraph: stacked below title -->
-                <div class="col-span-3  flex flex-col z-20 items-center justify-end gap-6 h-full pb-4">
+                <div class="col-span-6 md:col-span-3  flex flex-col z-20 items-center justify-end gap-6 h-full pb-4">
                     <TitleSection class="w-[20%] self-start">
                         <template #title>
                             <div class="text-[27px]">
@@ -23,7 +19,7 @@
 אני איריס, טיילת מלידה, חוקרת עולמות קרובים ורחוקים מתוך תשוקה אמיתית לגלות, לחוות ולשתף. עם רקע כביולוגית ימית וחקר המוח וההתנהגות, אני מוצאת קסם בטבע, בתרבויות ובמפגשים בלתי נשכחים. אחרי אינספור מסעות – ממעמקי השונית הגדולה באוסטרליה, דרך פסגות ההימלאיה ועד מדבריות הסהרה הבנתי שטיול טוב באמת מתחיל בתכנון אישי. מתוך אהבה לעולם ולבני אדם הקמתי את WEBAIR , כדי לעזור לכם ליצור טיולים שתפורים בדיוק עבורכם – לחוויות, לחלומות ולרגעים שיישארו אתכם הרבה אחרי שתחזרו הביתה. 
                     </p>
                 </div>
-                <div class="col-span-3 flex justify-center  z-10 pointer-events-none">
+                <div class="col-span-6 md:col-span-3 flex justify-center  z-10 pointer-events-none">
                     <img
                         :src="mediaServer + mainImage"
                         alt="איריס בטבע"

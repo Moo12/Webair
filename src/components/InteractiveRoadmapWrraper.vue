@@ -6,7 +6,7 @@
   </div>
   <div v-else class="grid grid-cols-12  w-full textAlign main-padding"
   :class="{
-    'gap-y-[20%]' : screen.isMobile,
+    'gap-y-20' : screen.isMobile,
     'gap-x-3' : !screen.isMobile
   }"
   >

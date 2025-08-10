@@ -38,7 +38,7 @@
                         </div>
                     </div>
                     <div class="bg-yellow-orange flex mb-[10%] justify-center items-center px-5 py-4 font-bold rounded-3xl text-black-light mx-auto">
-                        <p>{{ card.price }} ש״ח</p>
+                        <p>{{ card.price }} </p>
                     </div>
                 </div>
             </div>
@@ -97,7 +97,7 @@ const travelServices = [
         "✔ טיפים והכוונה לבניית מסלול"
       ]
     },
-    price: "500",
+    price: "500 ש״ח",
   },
   {
     title: "תכנון מסלול מדויק ומפורט",
@@ -112,7 +112,7 @@ const travelServices = [
         "✔ ליווי וזמינות לכל שאלה עד ובמהלך הטיול"
       ]
     },
-    price: "150"
+    price: "150 ש״ח"
   },
   {
     title: "שירות מורחב",
@@ -126,7 +126,7 @@ const travelServices = [
         "✔ התאמת ההזמנות למסלול"
       ]
     },
-    price: ""
+    price: "בואו נדבר :)"
   }
 ];
 

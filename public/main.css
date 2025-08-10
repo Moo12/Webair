@@ -927,6 +927,10 @@ video {
   margin-right: 0.25rem;
 }
 
+.mt-\[40\%\] {
+  margin-top: 40%;
+}
+
 .block {
   display: block;
 }
@@ -1415,6 +1419,10 @@ video {
 
 .gap-y-\[20\%s\] {
   row-gap: 20%s;
+}
+
+.gap-y-20 {
+  row-gap: 5rem;
 }
 
 .space-x-2 > :not([hidden]) ~ :not([hidden]) {
@@ -2786,6 +2794,14 @@ html, body, #app {
 
   .lg\:p-8 {
     padding: 2rem;
+  }
+
+  .lg\:text-\[36px\] {
+    font-size: 36px;
+  }
+
+  .lg\:text-\[54px\] {
+    font-size: 54px;
   }
 }
 
