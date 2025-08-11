@@ -5,7 +5,14 @@
     </div>
   </div>
   <div v-else>
-    <WelcomeVideo :source="welcomeVideo" class="md:h-[100vh] h-auto"/>
+    <WelcomeVideo :source="welcomeVideo" class="md:h-[100vh] h-auto">
+      <template #default>
+        <div class="text-center text-white flex flex-col gap-2">
+          <p class="text-white text-center text-[36px] lg:text-[54px] font-bold">ייעוץ ותכנון טיולים</p>
+          <p class="text-white text-center text-[24px] lg:text-[36px] font-medium">בהתאמה אישית</p>
+        </div>
+      </template>
+    </WelcomeVideo>
     <div class="md:mt-[8%] mt-[15%]">
       <Introduction language="he" title="תכנון טיולים בהתאמה אישית מה זה אומר?">
         <p>בין אם אתם חולמים על חופשה אורבנית תוססת, טבע עוצמתי, חוויות קולינריות או שילוב של כל אלה, אני כאן כדי להפוך את החלום שלכם למסלול מדויק, נוח וזורם. 
